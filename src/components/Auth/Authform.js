@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import classes from "./Authform.module.css";
+import { AuthContext } from "../../context/context";
 
 const Authform = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -7,6 +8,8 @@ const Authform = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
+
+  const authCtx = AuthContext();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -53,8 +56,9 @@ const Authform = () => {
           }
         })
         .then((data) => {
-          // authCtx.login(data.idToken, data.email);
+          authCtx.login(data.idToken, data.email);
           console.log("User has successfully operation ");
+          console.log(data);
         })
         .catch((err) => {
           alert(err.message);
@@ -103,7 +107,7 @@ const Authform = () => {
             className={classes.toggle}
             onClick={switchAuthModeHandler}
           >
-            {isLogin ? "Create new account" : "Have an account? Login"}
+            {isLogin ? "Don't have account? Sign Up" : "Have an account? Login"}
           </button>
         </div>
       </form>
