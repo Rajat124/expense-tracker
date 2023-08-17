@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import classes from "./Authform.module.css";
 import { AuthContext } from "../../context/context";
+import { NavLink } from "react-bootstrap";
 
 const Authform = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -73,45 +74,57 @@ const Authform = () => {
   };
 
   return (
-    <section className={classes.auth}>
-      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-      <hr style={{ backgroundColor: "white" }}></hr>
-      <form onSubmit={submitHandler}>
-        <div className={classes.control}>
-          <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emailInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="password">Your Password</label>
-          <input
-            type="password"
-            id="password"
-            required
-            ref={passwordInputRef}
-          />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            required
-            ref={confirmPasswordInputRef}
-          />
-        </div>
-        <div className={classes.actions}>
-          {!isLoading && <button>{isLogin ? " Login" : "Sign up"}</button>}
-          {isLoading && <p>Sending Request...</p>}
-          <button
-            type="button"
-            className={classes.toggle}
-            onClick={switchAuthModeHandler}
-          >
-            {isLogin ? "Don't have account? Sign Up" : "Have an account? Login"}
-          </button>
-        </div>
-      </form>
-    </section>
+    <div>
+      <section className={classes.auth}>
+        <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+        <hr style={{ backgroundColor: "white" }}></hr>
+        <form onSubmit={submitHandler}>
+          <div className={classes.control}>
+            <label htmlFor="email">Your Email</label>
+            <input type="email" id="email" required ref={emailInputRef} />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="password">Your Password</label>
+            <input
+              type="password"
+              id="password"
+              required
+              ref={passwordInputRef}
+            />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              required
+              ref={confirmPasswordInputRef}
+            />
+          </div>
+
+          <div className={classes.actions}>
+            {!isLoading && <button>{isLogin ? " Login" : "Sign up"}</button>}
+            {isLoading && <p>Sending Request...</p>}
+
+            <button
+              type="button"
+              className={classes.toggle}
+              onClick={switchAuthModeHandler}
+            >
+              {isLogin
+                ? "Don't have account? Sign Up"
+                : "Have an account? Login"}
+            </button>
+
+            <a href="/forgotPass">
+              <button type="button" className={classes.toggle}>
+                Forgot password?
+              </button>
+            </a>
+          </div>
+        </form>
+      </section>
+    </div>
   );
 };
 
