@@ -9,6 +9,7 @@ import { AuthContext } from "./context/context";
 import Home from "./components/pages/Home";
 import ProfilePage from "./components/pages/ProfilePage";
 import ForgotPass from "./components/pages/ForgotPass";
+import DailyExpenses from "./components/pages/Expense/DailyExpenses";
 
 function App() {
   const authCtx = AuthContext();
@@ -29,6 +30,9 @@ function App() {
       </Route>
       <Route path="/profile">
         <ProfilePage />
+      </Route>
+      <Route path="/dailyExpense">
+        <DailyExpenses />
       </Route>
     </Switch>
   );
