@@ -18,6 +18,7 @@ const Context = (props) => {
 
   const logout = () => {
     setToken(null);
+    localStorage.removeItem("token");
   };
 
   let contextValue = {
