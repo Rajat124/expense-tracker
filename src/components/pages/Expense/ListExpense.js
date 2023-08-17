@@ -1,26 +1,66 @@
 import React from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import RederList from "./RederList";
 
 const ListExpense = (props) => {
+  let Food = [];
+  let Petrol = [];
+  let Salary = [];
+
+  props.items.map((item) => {
+    if (item.category === "Food") {
+      Food.push(item);
+    } else if (item.category === "Petrol") {
+      Petrol.push(item);
+    } else {
+      Salary.push(item);
+    }
+  });
+
   return (
-    <Container className="justify-content-md-center">
-      {props.item.map((item) => (
-        <Row
-          className="justify-content-md-center"
-          key={item.id}
-          style={{
-            border: "2px solid black",
-            // width: "50rem",
-            fontFamily: "cursive",
-            fontWeight: "bolder",
-          }}
-        >
-          <Col md={2}>Amount: {item.amount}</Col>
-          <Col md={2}>Description: {item.desc}</Col>
-          <Col md={2}>Category: {item.category}</Col>
-        </Row>
-      ))}
-    </Container>
+    <ul>
+      <h3>Food Items:</h3>
+      {Food.map((item) => {
+        return (
+          <RederList
+            key={item.id} // Just to avoid key error
+            // itemkey={item.key}
+            id={item.id}
+            amount={item.amount}
+            desc={item.desc}
+            category={item.category}
+            // onDelete={props.onDeleteItem}
+          />
+        );
+      })}
+      <h3>Petrol Items:</h3>
+      {Petrol.map((item) => {
+        return (
+          <RederList
+            key={item.id}
+            // itemkey={item.key}
+            id={item.id}
+            amount={item.amount}
+            desc={item.desc}
+            category={item.category}
+            // onDelete={props.onDeleteItem}
+          />
+        );
+      })}
+      <h3>Salary Items:</h3>
+      {Salary.map((item) => {
+        return (
+          <RederList
+            key={item.id}
+            // itemkey={item.key}
+            id={item.id}
+            amount={item.amount}
+            desc={item.desc}
+            category={item.category}
+            // onDelete={props.onDeleteItem}
+          />
+        );
+      })}
+    </ul>
   );
 };
 

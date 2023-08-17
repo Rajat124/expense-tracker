@@ -13,7 +13,7 @@ const DailyExpenses = () => {
     <div>
       <ExpenseInput InputData={onInputData} />
       <h2 style={{ display: "flex", justifyContent: "center" }}>Expense</h2>
-      <ListExpense item={item} />
+      <ListExpense items={item} />
     </div>
   );
 };
