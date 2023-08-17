@@ -14,7 +14,10 @@ function App() {
 
   return (
     <Switch>
-      <Route path="/home" exact>
+      {/* <Route path="/">
+        <Authform />
+      </Route> */}
+      <Route path="/home">
         <Home />
       </Route>
       <Route path="/auth" exact>

@@ -13,6 +13,7 @@ const Context = (props) => {
 
   const login = (token, email) => {
     setToken(token);
+    localStorage.setItem("token", token);
   };
 
   const logout = () => {

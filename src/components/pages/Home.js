@@ -3,7 +3,10 @@ import { NavLink } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div>
+    <div
+      className="container"
+      style={{ display: "flex", justifyContent: "space-between" }}
+    >
       <h4>Welcome to Expense Tracker!!!</h4>
       <h5>
         Your Profile is incomplete.
