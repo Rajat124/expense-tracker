@@ -37,10 +37,12 @@ const ProfilePage = () => {
         }
       })
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         data.users.map((item) => {
-          fullnameInput.current.value = item.displayName;
-          profileLinkInput.current.value = item.photoUrl;
+          if (item.displayName) {
+            fullnameInput.current.value = item.displayName;
+            profileLinkInput.current.value = item.photoUrl;
+          }
         });
       })
       .catch((err) => {
@@ -97,9 +99,9 @@ const ProfilePage = () => {
         <h6>
           Your Profile is incomplete. A complete profile has higher chances to
           landing a job
-          <NavLink to="/profile">
+          {/* <NavLink to="/profile">
             <button>Complete Now</button>
-          </NavLink>
+          </NavLink> */}
         </h6>
       </div>
       <Form onSubmit={submitHandler}>

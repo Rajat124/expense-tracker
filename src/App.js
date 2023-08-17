@@ -14,9 +14,7 @@ function App() {
 
   return (
     <Switch>
-      {/* <Route path="/">
-        <Authform />
-      </Route> */}
+      {/* <Route path="/"></Route> */}
       <Route path="/home">
         <Home />
       </Route>
