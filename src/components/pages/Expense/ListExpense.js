@@ -18,7 +18,11 @@ const ListExpense = (props) => {
 
   return (
     <ul>
+      <h2 style={{ display: "flex", justifyContent: "center" }}>
+        Expenses List
+      </h2>
       <h3>Food Items:</h3>
+      <hr></hr>
       {Food.map((item) => {
         return (
           <RederList
@@ -33,6 +37,7 @@ const ListExpense = (props) => {
         );
       })}
       <h3>Petrol Items:</h3>
+      <hr></hr>
       {Petrol.map((item) => {
         return (
           <RederList
@@ -47,6 +52,7 @@ const ListExpense = (props) => {
         );
       })}
       <h3>Salary Items:</h3>
+      <hr></hr>
       {Salary.map((item) => {
         return (
           <RederList

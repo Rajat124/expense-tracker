@@ -21,13 +21,31 @@ const ExpenseInput = (props) => {
 
     props.InputData(data);
 
-    console.log(amount, desc, category);
+    fetch(
+      `https://expense-tracker-6affc-default-rtdb.firebaseio.com/expense.json`,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        // console.log(data);
+      });
   };
 
   return (
     <div>
-      <Form onSubmit={sumbitHandler} className="form-control">
-        <h2>Expense</h2>
+      <Form
+        onSubmit={sumbitHandler}
+        className="form-control"
+        // style={{ width: "60%", margin: "auto" }}
+      >
+        <h1 style={{ display: "flex", justifyContent: "center" }}>
+          Expense Form
+        </h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Amount:</Form.Label>
           <Form.Control type="number" ref={amountInputRef} />
@@ -42,7 +60,7 @@ const ExpenseInput = (props) => {
           <option value="Petrol">Petrol</option>
           <option value="Salary">Salary</option>
         </Form.Select>
-        <Button variant="primary" type="submit">
+        <Button className="form-control" variant="primary" type="submit">
           Submit
         </Button>
       </Form>
