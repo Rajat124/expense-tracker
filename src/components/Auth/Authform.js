@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import classes from "./Authform.module.css";
 import { AuthContext } from "../../context/context";
-import { NavLink } from "react-bootstrap";
 
 const Authform = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -17,7 +16,13 @@ const Authform = () => {
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
-    const confirmPassword = confirmPasswordInputRef.current.value;
+    let confirmPassword;
+
+    if (isLogin) {
+      confirmPassword = passwordInputRef.current.value;
+    } else {
+      confirmPassword = confirmPasswordInputRef.current.value;
+    }
 
     if (enteredPassword === confirmPassword) {
       setLoading(true);
@@ -92,15 +97,17 @@ const Authform = () => {
               ref={passwordInputRef}
             />
           </div>
-          <div className={classes.control}>
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              required
-              ref={confirmPasswordInputRef}
-            />
-          </div>
+          {!isLogin && (
+            <div className={classes.control}>
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                required
+                ref={confirmPasswordInputRef}
+              />
+            </div>
+          )}
 
           <div className={classes.actions}>
             {!isLoading && <button>{isLogin ? " Login" : "Sign up"}</button>}

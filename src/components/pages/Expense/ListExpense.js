@@ -27,12 +27,13 @@ const ListExpense = (props) => {
         return (
           <RederList
             key={item.id} // Just to avoid key error
-            // itemkey={item.key}
             id={item.id}
+            ckey={item.ckey}
             amount={item.amount}
             desc={item.desc}
             category={item.category}
-            // onDelete={props.onDeleteItem}
+            onDelete={props.onDeleteItem}
+            onUpdate={props.OnUpdateItem}
           />
         );
       })}
@@ -42,12 +43,13 @@ const ListExpense = (props) => {
         return (
           <RederList
             key={item.id}
-            // itemkey={item.key}
             id={item.id}
+            ckey={item.ckey}
             amount={item.amount}
             desc={item.desc}
             category={item.category}
-            // onDelete={props.onDeleteItem}
+            onDelete={props.onDeleteItem}
+            onUpdate={props.OnUpdateItem}
           />
         );
       })}
@@ -57,12 +59,13 @@ const ListExpense = (props) => {
         return (
           <RederList
             key={item.id}
-            // itemkey={item.key}
             id={item.id}
+            ckey={item.ckey}
             amount={item.amount}
             desc={item.desc}
             category={item.category}
-            // onDelete={props.onDeleteItem}
+            onDelete={props.onDeleteItem}
+            onUpdate={props.OnUpdateItem}
           />
         );
       })}

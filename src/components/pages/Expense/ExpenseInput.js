@@ -6,6 +6,12 @@ const ExpenseInput = (props) => {
   const descInputRef = useRef();
   const cateInputRef = useRef();
 
+  if (props.persistData) {
+    amountInputRef.current.value = props.persistData.amount;
+    descInputRef.current.value = props.persistData.desc;
+    cateInputRef.current.value = props.persistData.category;
+  }
+
   const sumbitHandler = (e) => {
     e.preventDefault();
     const amount = amountInputRef.current.value;
@@ -21,19 +27,32 @@ const ExpenseInput = (props) => {
 
     props.InputData(data);
 
-    fetch(
-      `https://expense-tracker-6affc-default-rtdb.firebaseio.com/expense.json`,
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-      }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        // console.log(data);
-      });
+    if (!props.isItemUpdate) {
+      fetch(
+        `https://expense-tracker-6affc-default-rtdb.firebaseio.com/expense.json`,
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+        }
+      );
+    }
+  };
+
+  const onUpdateButton = (e) => {
+    const amount = amountInputRef.current.value;
+    const desc = descInputRef.current.value;
+    const category = cateInputRef.current.value;
+
+    console.log(amount, desc, category);
+
+    let data = {
+      amount: amount,
+      desc: desc,
+      category: category,
+      id: Math.random().toString(),
+    };
+
+    props.updatedData(data);
   };
 
   return (
@@ -63,6 +82,15 @@ const ExpenseInput = (props) => {
         <Button className="form-control" variant="primary" type="submit">
           Submit
         </Button>
+        {props.isItemUpdate && (
+          <Button
+            className="form-control"
+            variant="primary"
+            onClick={onUpdateButton}
+          >
+            Update
+          </Button>
+        )}
       </Form>
     </div>
   );

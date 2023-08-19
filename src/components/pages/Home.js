@@ -48,13 +48,7 @@ const Home = () => {
       <div
         style={{ display: "flex", justifyContent: "flex-end" }}
         className="container"
-      >
-        <NavLink to="/auth">
-          <Button variant="danger" onClick={authCtx.logout}>
-            Log Out
-          </Button>
-        </NavLink>
-      </div>
+      ></div>
       <div
         className="container"
         style={{ display: "flex", justifyContent: "space-between" }}
