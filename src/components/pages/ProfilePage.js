@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Button, Form, NavLink } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { AuthContext } from "../../context/context";
 
 let idToken = localStorage.getItem("token");
@@ -99,9 +99,6 @@ const ProfilePage = () => {
         <h6>
           Your Profile is incomplete. A complete profile has higher chances to
           landing a job
-          {/* <NavLink to="/profile">
-            <button>Complete Now</button>
-          </NavLink> */}
         </h6>
       </div>
       <Form onSubmit={submitHandler}>

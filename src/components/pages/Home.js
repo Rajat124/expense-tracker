@@ -1,13 +1,10 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { AuthContext } from "../../context/context";
 
 let idToken = localStorage.getItem("token");
 
 const Home = () => {
-  const authCtx = AuthContext();
-
   const verifyEmail = () => {
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDYfusG2ykTFrcF5AZHX45XIWzd3ffeaEg",

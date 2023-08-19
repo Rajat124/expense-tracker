@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ExpenseInput from "./ExpenseInput";
 import ListExpense from "./ListExpense";
 
@@ -46,7 +46,7 @@ const DailyExpenses = () => {
   };
 
   const onupdatedData = (data) => {
-    console.log(data);
+    // console.log(data);
 
     setItem((prevState) => {
       let updatedListItem = [...prevState];
