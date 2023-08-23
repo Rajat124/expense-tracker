@@ -1,25 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { AuthContext } from "../../context/context";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { useDispatch, useSelector } from "react-redux";
+import { authAction } from "../../store/auth";
+// import { AuthContext } from "../../context/context";
 
 const Header = () => {
-  const authCtx = AuthContext();
+  // const authCtx = AuthContext();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authAction.refresh());
+  }, []);
+
+  const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+  const isExpenseLimitOff = useSelector(
+    (state) => state.expense.isExpenseLimitOff
+  );
+
+  const logOutHandler = () => {
+    dispatch(authAction.logout());
+  };
 
   return (
     <Navbar expand="lg" className="bg-info bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">Expense Tracker</Navbar.Brand>
-
+        <Navbar.Brand>Expense Tracker</Navbar.Brand>
         <Nav>
-          {authCtx.isUserLoggedIn && (
+          {isUserLoggedIn && isExpenseLimitOff && (
+            // <NavLink>
+            <Button variant="success">Activate Premium</Button>
+            // </NavLink>
+          )}
+          {isUserLoggedIn && (
             <NavLink to="/expense">
               <Button variant="success">Track Expenses</Button>
             </NavLink>
           )}
-          {authCtx.isUserLoggedIn && (
+          {isUserLoggedIn && (
             <NavLink to="/auth">
-              <Button variant="danger" onClick={authCtx.logout}>
+              <Button variant="danger" onClick={logOutHandler}>
                 Log Out
               </Button>
             </NavLink>

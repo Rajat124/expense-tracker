@@ -1,10 +1,14 @@
 import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { expenseAction } from "../../../store/expense";
 
 const ExpenseInput = (props) => {
   const amountInputRef = useRef();
   const descInputRef = useRef();
   const cateInputRef = useRef();
+
+  const dispatch = useDispatch();
 
   if (props.persistData) {
     amountInputRef.current.value = props.persistData.amount;
@@ -20,12 +24,12 @@ const ExpenseInput = (props) => {
 
     let data = {
       amount: amount,
+      id: Math.random().toString(),
       desc: desc,
       category: category,
-      id: Math.random().toString(),
     };
 
-    props.InputData(data);
+    dispatch(expenseAction.addingTheAmount(amount / 1));
 
     if (!props.isItemUpdate) {
       fetch(
@@ -34,7 +38,13 @@ const ExpenseInput = (props) => {
           method: "POST",
           body: JSON.stringify(data),
         }
-      );
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((datas) => {
+          props.InputData({ ckey: datas.name, ...data });
+        });
     }
   };
 
@@ -42,8 +52,6 @@ const ExpenseInput = (props) => {
     const amount = amountInputRef.current.value;
     const desc = descInputRef.current.value;
     const category = cateInputRef.current.value;
-
-    console.log(amount, desc, category);
 
     let data = {
       amount: amount,

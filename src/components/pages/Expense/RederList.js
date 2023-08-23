@@ -5,7 +5,8 @@ const RederList = (props) => {
   //   console.log(props);
 
   const deleteItem = () => {
-    props.onDelete(props.id, props.ckey);
+    // props.onDelete(props.id, props.ckey);
+    props.onDelete(props);
   };
 
   const updateItem = () => {

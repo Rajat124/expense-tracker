@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ExpenseInput from "./ExpenseInput";
 import ListExpense from "./ListExpense";
+import { useDispatch, useSelector } from "react-redux";
+import { expenseAction } from "../../../store/expense";
 
 const DailyExpenses = () => {
   const [items, setItem] = useState([]);
@@ -8,6 +10,9 @@ const DailyExpenses = () => {
   const [itemIdx, setItemIdx] = useState(null);
   const [isItemUpdate, setisItemUpdate] = useState(false);
   const [ckey, setclickedItemCkey] = useState("");
+  const [previousItemAmount, setPreviousItemAmount] = useState(null);
+
+  const dispatch = useDispatch();
 
   const expensGetFunction = () => {
     fetch(
@@ -33,11 +38,12 @@ const DailyExpenses = () => {
         setItem(load);
       });
   };
+
   console.log(items);
 
   useEffect(() => {
     expensGetFunction();
-  }, [items.length]);
+  }, []);
 
   const onInputData = (data) => {
     setItem((prevState) => {
@@ -46,17 +52,24 @@ const DailyExpenses = () => {
   };
 
   const onupdatedData = (data) => {
-    // console.log(data);
-
+    let prevItemAmount = [...items];
     setItem((prevState) => {
       let updatedListItem = [...prevState];
       let updatedItem = { ckey, ...data };
 
       if (itemIdx !== null) {
         updatedListItem[itemIdx] = updatedItem;
+        console.log(updatedListItem[itemIdx].amount);
         return updatedListItem;
       }
     });
+
+    dispatch(
+      expenseAction.updateTheAmount({
+        prevItemAmount: prevItemAmount[itemIdx].amount / 1,
+        currentItemAmount: data.amount / 1,
+      })
+    );
 
     fetch(
       `https://expense-tracker-6affc-default-rtdb.firebaseio.com/expense/${ckey}.json`,
@@ -69,13 +82,15 @@ const DailyExpenses = () => {
     setclickedItemCkey("");
   };
 
-  const deleteItemHandler = (itemId, ckey) => {
-    console.log(itemId, ckey);
+  const deleteItemHandler = (items) => {
+    dispatch(expenseAction.deleteTheAmount(items.amount / 1));
 
-    setItem((prevlist) => prevlist.filter((item) => item.id !== itemId));
+    console.log(items.id, items.ckey);
+
+    setItem((prevlist) => prevlist.filter((item) => item.id !== items.id));
 
     fetch(
-      `https://expense-tracker-6affc-default-rtdb.firebaseio.com/expense/${ckey}.json`,
+      `https://expense-tracker-6affc-default-rtdb.firebaseio.com/expense/${items.ckey}.json`,
       {
         method: "DELETE",
       }
@@ -83,10 +98,11 @@ const DailyExpenses = () => {
   };
 
   const updateItemHandler = (item) => {
-    console.log(item);
+    // console.log(item);
     setPersistData({ ...item });
 
     setclickedItemCkey(item.ckey);
+
     let existingEleIdx = items.findIndex((el) => el.id === item.id);
     setItemIdx(existingEleIdx);
     setisItemUpdate(true);

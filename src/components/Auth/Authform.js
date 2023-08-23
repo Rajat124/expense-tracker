@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import classes from "./Authform.module.css";
-import { AuthContext } from "../../context/context";
+import { useDispatch } from "react-redux";
+import { authAction } from "../../store/auth";
+// import { AuthContext } from "../../context/context";
 
 const Authform = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -9,7 +11,8 @@ const Authform = () => {
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
 
-  const authCtx = AuthContext();
+  // const authCtx = AuthContext();
+  const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -62,7 +65,8 @@ const Authform = () => {
           }
         })
         .then((data) => {
-          authCtx.login(data.idToken, data.email);
+          dispatch(authAction.login(data.idToken));
+          // authCtx.login(data.idToken, data.email);
           console.log("User has successfully operation ");
           console.log(data);
         })
