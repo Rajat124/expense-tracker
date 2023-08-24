@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button, Container, Nav, Navbar, ToggleButton } from "react-bootstrap";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../../store/auth";
 import { featureAction } from "../../store/features";
-import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
+import { MdOutlineDarkMode } from "react-icons/md";
 import { SiDarkreader } from "react-icons/si";
 // import { AuthContext } from "../../context/context";
 
 const Header = () => {
   // const authCtx = AuthContext();
   const dispatch = useDispatch();
-  const [features, setFeatures] = useState(false);
+  const Onfeatures = useSelector((state) => state.feature.Onfeatures);
   const darkMode = useSelector((state) => state.feature.darkmode);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   const activateFeatures = () => {
-    setFeatures(true);
+    dispatch(featureAction.activatefeature());
   };
 
   const toggleDarkMode = () => {
@@ -40,7 +40,7 @@ const Header = () => {
       <Container>
         <Navbar.Brand>Expense Tracker</Navbar.Brand>
         <Nav>
-          {features && (
+          {Onfeatures && (
             <ToggleButton
               variant={darkMode ? "dark" : "light"}
               onClick={toggleDarkMode}

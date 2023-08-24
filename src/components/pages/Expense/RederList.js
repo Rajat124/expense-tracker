@@ -2,10 +2,7 @@ import React from "react";
 import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
 
 const RederList = (props) => {
-  //   console.log(props);
-
   const deleteItem = () => {
-    // props.onDelete(props.id, props.ckey);
     props.onDelete(props);
   };
 
@@ -20,7 +17,6 @@ const RederList = (props) => {
           fontFamily: "cursive",
           fontWeight: "bolder",
           margin: "6px",
-          //   padding: "8px 0",
           borderRadius: "8px",
         }}
       >

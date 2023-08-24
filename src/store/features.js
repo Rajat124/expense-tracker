@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialFeatureState = { darkmode: false };
+const initialFeatureState = { darkmode: false, Onfeatures: false };
 
 const featureSlice = createSlice({
   name: "feature",
@@ -8,6 +8,10 @@ const featureSlice = createSlice({
   reducers: {
     toggleDarkMode(state) {
       state.darkmode = !state.darkmode;
+    },
+
+    activatefeature(state) {
+      state.Onfeatures = !state.Onfeatures;
     },
   },
 });

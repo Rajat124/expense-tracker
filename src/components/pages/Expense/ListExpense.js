@@ -1,9 +1,11 @@
 import React from "react";
 import RederList from "./RederList";
-import { Button, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import FileDownload from "./FileDownload";
+import { useSelector } from "react-redux";
 
 const ListExpense = (props) => {
+  const Onfeatures = useSelector((state) => state.feature.Onfeatures);
   let Food = [];
   let Petrol = [];
   let Salary = [];
@@ -16,6 +18,7 @@ const ListExpense = (props) => {
     } else {
       Salary.push(item);
     }
+    return item;
   });
 
   return (
@@ -23,9 +26,7 @@ const ListExpense = (props) => {
       <h2 style={{ display: "flex", justifyContent: "center" }}>
         Expenses List
       </h2>
-      <Row>
-        <FileDownload data={props.items} />
-      </Row>
+      <Row>{Onfeatures && <FileDownload data={props.items} />}</Row>
       <h3>Food Items:</h3>
       <hr></hr>
       {Food.map((item) => {
