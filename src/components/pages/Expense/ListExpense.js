@@ -1,5 +1,7 @@
 import React from "react";
 import RederList from "./RederList";
+import { Button, Row } from "react-bootstrap";
+import FileDownload from "./FileDownload";
 
 const ListExpense = (props) => {
   let Food = [];
@@ -21,6 +23,9 @@ const ListExpense = (props) => {
       <h2 style={{ display: "flex", justifyContent: "center" }}>
         Expenses List
       </h2>
+      <Row>
+        <FileDownload data={props.items} />
+      </Row>
       <h3>Food Items:</h3>
       <hr></hr>
       {Food.map((item) => {

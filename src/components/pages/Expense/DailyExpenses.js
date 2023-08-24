@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ExpenseInput from "./ExpenseInput";
 import ListExpense from "./ListExpense";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { expenseAction } from "../../../store/expense";
 
 const DailyExpenses = () => {
@@ -10,7 +10,6 @@ const DailyExpenses = () => {
   const [itemIdx, setItemIdx] = useState(null);
   const [isItemUpdate, setisItemUpdate] = useState(false);
   const [ckey, setclickedItemCkey] = useState("");
-  const [previousItemAmount, setPreviousItemAmount] = useState(null);
 
   const dispatch = useDispatch();
 
