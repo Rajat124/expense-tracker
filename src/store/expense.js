@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
 
 const initialExpenseState = {
   expenseAmount: 0,
@@ -38,7 +36,7 @@ const expenseSlice = createSlice({
         state.expenseAmount + actions.payload.currentItemAmount;
       localStorage.setItem("expenseAmount", state.expenseAmount);
 
-      if (state.expenseAmount < 10000) {
+      if (state.expenseAmount >= 10000) {
         state.isExpenseLimitOff = false;
       } else if (state.expenseAmount < 10000) {
         state.isExpenseLimitOff = false;
@@ -54,7 +52,6 @@ const expenseSlice = createSlice({
       } else if (state.expenseAmount < 10000) {
         state.isExpenseLimitOff = false;
       }
-      console.log(expenseAmount);
     },
   },
 });

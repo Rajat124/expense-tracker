@@ -38,8 +38,6 @@ const DailyExpenses = () => {
       });
   };
 
-  console.log(items);
-
   useEffect(() => {
     expensGetFunction();
   }, []);
@@ -58,7 +56,6 @@ const DailyExpenses = () => {
 
       if (itemIdx !== null) {
         updatedListItem[itemIdx] = updatedItem;
-        console.log(updatedListItem[itemIdx].amount);
         return updatedListItem;
       }
     });
@@ -83,9 +80,6 @@ const DailyExpenses = () => {
 
   const deleteItemHandler = (items) => {
     dispatch(expenseAction.deleteTheAmount(items.amount / 1));
-
-    console.log(items.id, items.ckey);
-
     setItem((prevlist) => prevlist.filter((item) => item.id !== items.id));
 
     fetch(
@@ -97,7 +91,6 @@ const DailyExpenses = () => {
   };
 
   const updateItemHandler = (item) => {
-    // console.log(item);
     setPersistData({ ...item });
 
     setclickedItemCkey(item.ckey);

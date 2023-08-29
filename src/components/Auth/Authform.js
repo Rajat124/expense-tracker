@@ -67,7 +67,7 @@ const Authform = () => {
         .then((data) => {
           dispatch(authAction.login(data.idToken));
           // authCtx.login(data.idToken, data.email);
-          console.log("User has successfully operation ");
+          localStorage.setItem("token", data.idToken);
           console.log(data);
         })
         .catch((err) => {
