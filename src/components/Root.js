@@ -2,14 +2,19 @@ import React, { useEffect } from "react";
 import Header from "./pages/Header";
 import classes from "./Root.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { expenseAction } from "../store/expense";
+import { expenseCount, expenseRetrive } from "../store/expense-action";
 
 const Root = (props) => {
+  const expenseAm = useSelector((state) => state.expense.expenseAmount);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(expenseAction.retriveAmount());
+    dispatch(expenseRetrive());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(expenseCount(expenseAm));
+  }, [dispatch, expenseAm]);
 
   const darkMode = useSelector((state) => state.feature.darkmode);
 
@@ -22,5 +27,3 @@ const Root = (props) => {
 };
 
 export default Root;
-
-// className={}

@@ -25,6 +25,7 @@ const Header = () => {
 
   const logOutHandler = () => {
     dispatch(authAction.logout());
+    localStorage.removeItem("expenseAmount");
   };
 
   const activateFeatures = () => {

@@ -1,15 +1,12 @@
 import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { expenseAction } from "../../../store/expense";
 
 const ExpenseInput = (props) => {
   const amountInputRef = useRef();
   const descInputRef = useRef();
   const cateInputRef = useRef();
-
-  const a = useSelector((state) => state.expense.expenseAmount);
-  console.log(a);
 
   const dispatch = useDispatch();
 
