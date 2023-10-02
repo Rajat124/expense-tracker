@@ -22,6 +22,10 @@ function App() {
     <Root>
       <Switch>
         {/* <Route path="/">{!authCtx.isUserLoggedIn && <Authform />}</Route> */}
+        <Route path="/" exact>
+          {isUserLoggedIn && <Home />}
+          {!isUserLoggedIn && <Redirect to="/auth" />}
+        </Route>
         <Route path="/home">
           {isUserLoggedIn && <Home />}
           {!isUserLoggedIn && <Redirect to="/auth" />}
