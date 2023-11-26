@@ -9,7 +9,7 @@ const DailyExpenses = () => {
   const [persistData, setPersistData] = useState(null);
   const [itemIdx, setItemIdx] = useState(null);
   const [isItemUpdate, setisItemUpdate] = useState(false);
-  const [ckey, setclickedItemCkey] = useState("");
+  const [ckey, setClickedItemCkey] = useState("");
 
   const dispatch = useDispatch();
 
@@ -48,7 +48,7 @@ const DailyExpenses = () => {
     });
   };
 
-  const onupdatedData = (data) => {
+  const onUpdatedData = (data) => {
     let prevItemAmount = [...items];
     setItem((prevState) => {
       let updatedListItem = [...prevState];
@@ -75,7 +75,7 @@ const DailyExpenses = () => {
       }
     );
     setisItemUpdate(false);
-    setclickedItemCkey("");
+    setClickedItemCkey("");
   };
 
   const deleteItemHandler = (items) => {
@@ -92,7 +92,7 @@ const DailyExpenses = () => {
 
   const updateItemHandler = (item) => {
     setPersistData({ ...item });
-    setclickedItemCkey(item.ckey);
+    setClickedItemCkey(item.ckey);
 
     let existingEleIdx = items.findIndex((el) => el.id === item.id);
     setItemIdx(existingEleIdx);
@@ -103,7 +103,7 @@ const DailyExpenses = () => {
     <div style={{ width: "60%", margin: "auto" }}>
       <ExpenseInput
         InputData={onInputData}
-        updatedData={onupdatedData}
+        updatedData={onUpdatedData}
         persistData={persistData}
         isItemUpdate={isItemUpdate}
       />

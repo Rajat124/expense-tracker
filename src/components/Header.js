@@ -9,7 +9,7 @@ import { SiDarkreader } from "react-icons/si";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const Onfeatures = useSelector((state) => state.feature.Onfeatures);
+  const onFeatures = useSelector((state) => state.feature.Onfeatures);
   const darkMode = useSelector((state) => state.feature.darkmode);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const Header = () => {
           </Navbar.Brand>
         </Link>
         <Nav>
-          {Onfeatures && (
+          {onFeatures && (
             <ToggleButton
               variant={darkMode ? "dark" : "light"}
               onClick={toggleDarkMode}

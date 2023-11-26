@@ -10,7 +10,7 @@ import ForgotPass from "./components/ForgotPass";
 import DailyExpenses from "./components/Expense/DailyExpenses";
 import Root from "./components/Root";
 import { useSelector } from "react-redux";
-import AuthForm from "./Auth/AuthForm";
+import AuthForm from "./auth/AuthForm";
 
 function App() {
   const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);

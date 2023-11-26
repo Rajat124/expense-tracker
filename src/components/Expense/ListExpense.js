@@ -5,18 +5,18 @@ import FileDownload from "./FileDownload";
 import { useSelector } from "react-redux";
 
 const ListExpense = (props) => {
-  const Onfeatures = useSelector((state) => state.feature.Onfeatures);
-  let Food = [];
-  let Petrol = [];
-  let Salary = [];
+  const onFeatures = useSelector((state) => state.feature.Onfeatures);
+  let food = [];
+  let petrol = [];
+  let salary = [];
 
   props.items.map((item) => {
-    if (item.category === "Food") {
-      Food.push(item);
-    } else if (item.category === "Petrol") {
-      Petrol.push(item);
+    if (item.category === "food") {
+      food.push(item);
+    } else if (item.category === "petrol") {
+      petrol.push(item);
     } else {
-      Salary.push(item);
+      salary.push(item);
     }
     return item;
   });
@@ -26,10 +26,10 @@ const ListExpense = (props) => {
       <h2 style={{ display: "flex", justifyContent: "center" }}>
         Expenses List
       </h2>
-      <Row>{Onfeatures && <FileDownload data={props.items} />}</Row>
+      <Row>{onFeatures && <FileDownload data={props.items} />}</Row>
       <h3>Food Items:</h3>
       <hr></hr>
-      {Food.map((item) => {
+      {food.map((item) => {
         return (
           <RederList
             key={item.id} // Just to avoid key error
@@ -45,7 +45,7 @@ const ListExpense = (props) => {
       })}
       <h3>Petrol Items:</h3>
       <hr></hr>
-      {Petrol.map((item) => {
+      {petrol.map((item) => {
         return (
           <RederList
             key={item.id}
@@ -61,7 +61,7 @@ const ListExpense = (props) => {
       })}
       <h3>Salary Items:</h3>
       <hr></hr>
-      {Salary.map((item) => {
+      {salary.map((item) => {
         return (
           <RederList
             key={item.id}
