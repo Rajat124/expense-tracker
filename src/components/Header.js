@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import { Button, Container, Nav, Navbar, ToggleButton } from "react-bootstrap";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
-import { authAction } from "../../store/auth";
-import { featureAction } from "../../store/features";
+import { authAction } from "../features/auth/authSlice";
+import { featureAction } from "../features/feature/featureSlice";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { SiDarkreader } from "react-icons/si";
-// import { AuthContext } from "../../context/context";
 
 const Header = () => {
-  // const authCtx = AuthContext();
   const dispatch = useDispatch();
   const Onfeatures = useSelector((state) => state.feature.Onfeatures);
   const darkMode = useSelector((state) => state.feature.darkmode);
@@ -39,7 +37,11 @@ const Header = () => {
   return (
     <Navbar expand="lg" className="bg-info bg-body-tertiary">
       <Container>
-        <Navbar.Brand>Expense Tracker</Navbar.Brand>
+        <Link to="/home">
+          <Navbar.Brand style={{ fontWeight: "bold" }}>
+            Expense Tracker
+          </Navbar.Brand>
+        </Link>
         <Nav>
           {Onfeatures && (
             <ToggleButton

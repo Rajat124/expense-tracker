@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import ExpenseInput from "./ExpenseInput";
-import ListExpense from "./ListExpense";
+import ExpenseInput from "../Expense/ExpenseInput";
+import ListExpense from "../Expense/ListExpense";
 import { useDispatch } from "react-redux";
-import { expenseAction } from "../../../store/expense";
+import { expenseAction } from "../../features/expense/expenseSlice";
 
 const DailyExpenses = () => {
   const [items, setItem] = useState([]);
@@ -92,7 +92,6 @@ const DailyExpenses = () => {
 
   const updateItemHandler = (item) => {
     setPersistData({ ...item });
-
     setclickedItemCkey(item.ckey);
 
     let existingEleIdx = items.findIndex((el) => el.id === item.id);

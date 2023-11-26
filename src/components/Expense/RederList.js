@@ -23,9 +23,9 @@ const RederList = (props) => {
         <ListGroup.Item>
           <Row>
             <Col>AMOUNT: Rs.{props.amount}/- </Col>
-            <Col xs={4}>DESCRIPTION: {props.desc} </Col>
+            <Col xs={3}>DESCRIPTION: {props.desc} </Col>
             <Col>CATEGORY: {props.category} </Col>
-            <Col>
+            <Col xs={4}>
               <Button onClick={deleteItem}>Delete</Button>
               <Button onClick={updateItem} variant="danger">
                 Edit

@@ -1,18 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
-import { AuthContext } from "../../context/context";
 
 let idToken = localStorage.getItem("token");
+
+const API_KEY = process.env.REACT_APP_AUTH_API_KEY;
 
 const ProfilePage = () => {
   const fullnameInput = useRef();
   const profileLinkInput = useRef();
 
-  const authCtx = AuthContext();
-
   useEffect(() => {
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDYfusG2ykTFrcF5AZHX45XIWzd3ffeaEg",
+      `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${API_KEY}`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -58,11 +57,10 @@ const ProfilePage = () => {
     console.log(fullname, profileLink);
 
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDYfusG2ykTFrcF5AZHX45XIWzd3ffeaEg",
+      `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${API_KEY}`,
       {
         method: "POST",
         body: JSON.stringify({
-          idToken: authCtx.token,
           displayName: fullname,
           photoUrl: profileLink,
         }),

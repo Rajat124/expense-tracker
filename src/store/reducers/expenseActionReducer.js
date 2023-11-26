@@ -1,4 +1,4 @@
-import { expenseAction } from "./expense";
+import { expenseAction } from "../../features/expense/expenseSlice";
 
 export const expenseCount = (expenseAmount) => {
   return (dispatch) => {

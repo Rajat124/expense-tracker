@@ -2,18 +2,18 @@ import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+const API_KEY = process.env.REACT_APP_AUTH_API_KEY;
+
 const ForgotPass = () => {
   const enteredEmail = useRef();
-
   const history = useHistory();
 
   const sendLink = (e) => {
     e.preventDefault();
-
     const sendEnteredEmail = enteredEmail.current.value;
 
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDYfusG2ykTFrcF5AZHX45XIWzd3ffeaEg",
+      `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${API_KEY}`,
       {
         method: "POST",
         body: JSON.stringify({

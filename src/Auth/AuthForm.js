@@ -1,22 +1,21 @@
 import React, { useRef, useState } from "react";
-import classes from "./Authform.module.css";
+import classes from "./AuthForm.module.css";
 import { useDispatch } from "react-redux";
-import { authAction } from "../../store/auth";
-// import { AuthContext } from "../../context/context";
+import { authAction } from "../features/auth/authSlice";
 
-const Authform = () => {
+const API_KEY = process.env.REACT_APP_AUTH_API_KEY;
+
+const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setLoading] = useState(false);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
 
-  // const authCtx = AuthContext();
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
-
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
     let confirmPassword;
@@ -31,11 +30,9 @@ const Authform = () => {
       setLoading(true);
       let url;
       if (isLogin) {
-        url =
-          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDYfusG2ykTFrcF5AZHX45XIWzd3ffeaEg";
+        url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key= ${API_KEY}`;
       } else {
-        url =
-          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDYfusG2ykTFrcF5AZHX45XIWzd3ffeaEg";
+        url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
       }
 
       fetch(url, {
@@ -66,7 +63,6 @@ const Authform = () => {
         })
         .then((data) => {
           dispatch(authAction.login(data.idToken));
-          // authCtx.login(data.idToken, data.email);
           localStorage.setItem("token", data.idToken);
           console.log(data);
         })
@@ -139,4 +135,4 @@ const Authform = () => {
   );
 };
 
-export default Authform;
+export default AuthForm;

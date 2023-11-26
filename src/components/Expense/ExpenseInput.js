@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { expenseAction } from "../../../store/expense";
+import { expenseAction } from "../../features/expense/expenseSlice";
 
 const ExpenseInput = (props) => {
   const amountInputRef = useRef();
@@ -65,11 +65,7 @@ const ExpenseInput = (props) => {
 
   return (
     <div>
-      <Form
-        onSubmit={sumbitHandler}
-        className="form-control"
-        // style={{ width: "60%", margin: "auto" }}
-      >
+      <Form onSubmit={sumbitHandler} className="form-control">
         <h1 style={{ display: "flex", justifyContent: "center" }}>
           Expense Form
         </h1>

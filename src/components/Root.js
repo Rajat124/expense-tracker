@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
-import Header from "./pages/Header";
+import Header from "./Header";
 import classes from "./Root.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { expenseCount, expenseRetrive } from "../store/expense-action";
+import {
+  expenseCount,
+  expenseRetrive,
+} from "../store/reducers/expenseActionReducer";
 
 const Root = (props) => {
   const expenseAm = useSelector((state) => state.expense.expenseAmount);

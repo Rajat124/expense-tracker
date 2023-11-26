@@ -3,11 +3,12 @@ import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 let idToken = localStorage.getItem("token");
+const API_KEY = process.env.REACT_APP_AUTH_API_KEY;
 
 const Home = () => {
   const verifyEmail = () => {
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDYfusG2ykTFrcF5AZHX45XIWzd3ffeaEg",
+      `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${API_KEY}`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -48,16 +49,25 @@ const Home = () => {
       ></div>
       <div
         className="container"
-        style={{ display: "flex", justifyContent: "space-between" }}
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
       >
         <h4>Welcome to Expense Tracker!!!</h4>
-        <h5>
+        <h6
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           Your Profile is incomplete.
           <NavLink to="/profile">
             <Button>Complete Now</Button>
           </NavLink>
           <Button onClick={verifyEmail}>Verify Email</Button>
-        </h5>
+        </h6>
       </div>
     </div>
   );
