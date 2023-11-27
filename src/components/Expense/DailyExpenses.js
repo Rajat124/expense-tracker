@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ExpenseInput from "../Expense/ExpenseInput";
 import ListExpense from "../Expense/ListExpense";
 import { useDispatch } from "react-redux";
-import { expenseAction } from "../../features/expense/expenseSlice";
+import { expenseAction } from "../../features/expenseSlice/expenseSlice";
 
 const DailyExpenses = () => {
   const [items, setItem] = useState([]);

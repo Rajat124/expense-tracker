@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { expenseAction } from "../../features/expense/expenseSlice";
+import { expenseAction } from "../../features/expenseSlice/expenseSlice";
 
 const ExpenseInput = (props) => {
   const amountInputRef = useRef();

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import classes from "./AuthForm.module.css";
 import { useDispatch } from "react-redux";
-import { authAction } from "../features/auth/authSlice";
+import { authAction } from "../features/authSlice/authSlice";
 
 const API_KEY = process.env.REACT_APP_AUTH_API_KEY;
 

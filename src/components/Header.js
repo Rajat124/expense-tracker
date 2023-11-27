@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Button, Container, Nav, Navbar, ToggleButton } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
-import { authAction } from "../features/auth/authSlice";
-import { featureAction } from "../features/feature/featureSlice";
+import { authAction } from "../features/authSlice/authSlice";
+import { featureAction } from "../features/featureSlice/featureSlice";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { SiDarkreader } from "react-icons/si";
 
